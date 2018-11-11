@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe ApartmentsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Post. As you add validations to Post, be sure to
+  # Apartment. As you add validations to Apartment, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe PostsController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # PostsController. Be sure to keep this updated too.
+  # ApartmentsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      Post.create! valid_attributes
+      Apartment.create! valid_attributes
       get :index, {}, valid_session
       expect(response).to be_successful
     end
@@ -51,8 +51,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      post = Post.create! valid_attributes
-      get :show, {:id => post.to_param}, valid_session
+      apartment = Apartment.create! valid_attributes
+      get :show, {:id => apartment.to_param}, valid_session
       expect(response).to be_successful
     end
   end
@@ -66,29 +66,29 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      post = Post.create! valid_attributes
-      get :edit, {:id => post.to_param}, valid_session
+      apartment = Apartment.create! valid_attributes
+      get :edit, {:id => apartment.to_param}, valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Post" do
+      it "creates a new Apartment" do
         expect {
-          post :create, {:post => valid_attributes}, valid_session
-        }.to change(Post, :count).by(1)
+          post :create, {:apartment => valid_attributes}, valid_session
+        }.to change(Apartment, :count).by(1)
       end
 
-      it "redirects to the created post" do
-        post :create, {:post => valid_attributes}, valid_session
-        expect(response).to redirect_to(Post.last)
+      it "redirects to the created apartment" do
+        post :create, {:apartment => valid_attributes}, valid_session
+        expect(response).to redirect_to(Apartment.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, {:post => invalid_attributes}, valid_session
+        post :create, {:apartment => invalid_attributes}, valid_session
         expect(response).to be_successful
       end
     end
@@ -100,41 +100,41 @@ RSpec.describe PostsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested post" do
-        post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => new_attributes}, valid_session
-        post.reload
+      it "updates the requested apartment" do
+        apartment = Apartment.create! valid_attributes
+        put :update, {:id => apartment.to_param, :apartment => new_attributes}, valid_session
+        apartment.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the post" do
-        post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => valid_attributes}, valid_session
-        expect(response).to redirect_to(post)
+      it "redirects to the apartment" do
+        apartment = Apartment.create! valid_attributes
+        put :update, {:id => apartment.to_param, :apartment => valid_attributes}, valid_session
+        expect(response).to redirect_to(apartment)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        post = Post.create! valid_attributes
-        put :update, {:id => post.to_param, :post => invalid_attributes}, valid_session
+        apartment = Apartment.create! valid_attributes
+        put :update, {:id => apartment.to_param, :apartment => invalid_attributes}, valid_session
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested post" do
-      post = Post.create! valid_attributes
+    it "destroys the requested apartment" do
+      apartment = Apartment.create! valid_attributes
       expect {
-        delete :destroy, {:id => post.to_param}, valid_session
-      }.to change(Post, :count).by(-1)
+        delete :destroy, {:id => apartment.to_param}, valid_session
+      }.to change(Apartment, :count).by(-1)
     end
 
-    it "redirects to the posts list" do
-      post = Post.create! valid_attributes
-      delete :destroy, {:id => post.to_param}, valid_session
-      expect(response).to redirect_to(posts_url)
+    it "redirects to the apartments list" do
+      apartment = Apartment.create! valid_attributes
+      delete :destroy, {:id => apartment.to_param}, valid_session
+      expect(response).to redirect_to(apartments_url)
     end
   end
 
